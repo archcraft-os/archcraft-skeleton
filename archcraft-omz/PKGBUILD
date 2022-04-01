@@ -1,0 +1,88 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-omz
+pkgver=1.0
+pkgrel=2
+pkgdesc="A community-driven framework for managing your zsh configuration."
+arch=('any')
+url='https://github.com/ohmyzsh/ohmyzsh'
+license=('GPL')
+depends=('zsh')
+makedepends=('git')
+optdepends=('ruby: for some plugin functionality'
+            'python: for some plugin functionality'
+            'oh-my-zsh-powerline-theme-git: great theme'
+            'bullet-train-oh-my-zsh-theme-git: better powerline theme'
+            'git: most themes use git (highly recommended but still optional)')
+
+source=("git+https://github.com/robbyrussell/oh-my-zsh.git")
+
+sha256sums=('SKIP')
+
+prepare() {
+  	cd ${srcdir}/oh-my-zsh
+
+	# Copy Archcraft zsh themes
+	cp ../../archcraft.zsh-theme ${srcdir}/oh-my-zsh/custom/themes
+	cp -r ../../spaceship-prompt ${srcdir}/oh-my-zsh/custom/themes
+
+	cd ${srcdir}/oh-my-zsh/custom/themes
+	ln -s spaceship-prompt/spaceship.zsh-theme spaceship.zsh-theme
+  	cd ${srcdir}/oh-my-zsh
+
+	# Create config file 
+	cp "templates/zshrc.zsh-template" ".zshrc"
+	sed -i -e 's/ZSH_THEME=.*/ZSH_THEME="spaceship"/g' ".zshrc"
+	sed -i -e 's/# DISABLE_AUTO_UPDATE=.*/DISABLE_AUTO_UPDATE="true"/g' ".zshrc"
+
+	# Append some aliases
+	cat >> ".zshrc" <<- _EOF_
+
+		# On-demand rehash
+		zshcache_time="\$(date +%s%N)"
+
+		autoload -Uz add-zsh-hook
+
+		rehash_precmd() {
+		  if [[ -a /var/cache/zsh/pacman ]]; then
+		    local paccache_time="\$(date -r /var/cache/zsh/pacman +%s%N)"
+		    if (( zshcache_time < paccache_time )); then
+		      rehash
+		      zshcache_time="\$paccache_time"
+		    fi
+		  fi
+		}
+
+		add-zsh-hook -Uz precmd rehash_precmd
+
+		# omz
+		alias zshconfig="geany ~/.zshrc"
+		alias ohmyzsh="thunar ~/.oh-my-zsh"
+
+		# ls
+		alias l='ls -lh'
+		alias ll='ls -lah'
+		alias la='ls -A'
+		alias lm='ls -m'
+		alias lr='ls -R'
+		alias lg='ls -l --group-directories-first'
+
+		# git
+		alias gcl='git clone --depth 1'
+		alias gi='git init'
+		alias ga='git add'
+		alias gc='git commit -m'
+		alias gp='git push origin master'
+	_EOF_
+}
+
+package() {
+	cd ${srcdir}/oh-my-zsh
+	mkdir -p ${pkgdir}/etc/skel/.oh-my-zsh
+	cp -r . ${pkgdir}/etc/skel/.oh-my-zsh
+	install -Dm 644 ".zshrc" ${pkgdir}/etc/skel
+	install -Dm 644 "LICENSE.txt" ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
+	rm ${pkgdir}/etc/skel/.oh-my-zsh/.zshrc
+}
+
+# vim:set ts=2 sw=2 et:

@@ -1,0 +1,74 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-skeleton
+pkgver=1.0
+pkgrel=3
+pkgdesc="Base Configurations for Archcraft"
+url="https://github.com/archcraft-os/archcraft-skeleton"
+arch=('any')
+license=('GPL3')
+makedepends=()
+depends=()
+conflicts=()
+provides=("${pkgname}")
+options=(!strip)
+
+prepare() {
+	cp -af ../files/. ${srcdir}
+}
+
+package() {
+	local _skeldir=${pkgdir}/etc/skel
+	local _cachedir=${_skeldir}/.cache
+	local _configdir=${_skeldir}/.config
+
+	mkdir -p "$_skeldir" && mkdir -p "$_cachedir" && mkdir -p "$_configdir"
+
+	# Copy cache files
+	cp -r ${srcdir}/betterlockscreen 	"$_cachedir"
+	install -Dm 644 rofi3.druncache		"$_cachedir"/rofi3.druncache
+
+	# Copy config files
+	cp -r ${srcdir}/geany 				"$_configdir"
+	cp -r ${srcdir}/gtk-3.0 			"$_configdir"
+	cp -r ${srcdir}/Kvantum 			"$_configdir"
+	cp -r ${srcdir}/neofetch 			"$_configdir"
+	cp -r ${srcdir}/polybar 			"$_configdir"
+	cp -r ${srcdir}/qt5ct 				"$_configdir"
+	cp -r ${srcdir}/ranger 				"$_configdir"
+	cp -r ${srcdir}/rofi 				"$_configdir"
+	install -Dm 644 mimeapps.list		"$_configdir"/mimeapps.list
+
+	cp -r ${srcdir}/.mpd 				"$_skeldir"
+	cp -r ${srcdir}/.ncmpcpp 			"$_skeldir"
+	install -Dm 644 .dmrc				"$_skeldir"/.dmrc
+	install -Dm 644 .face				"$_skeldir"/.face
+	install -Dm 644 .gtkrc-2.0			"$_skeldir"/.gtkrc-2.0
+	install -Dm 644 .hushlogin			"$_skeldir"/.hushlogin
+
+	# Make scripts executable
+	chmod +x "$_skeldir"/.ncmpcpp/scripts/{album-art,ncmpcpp-art}
+	chmod +x "$_configdir"/ranger/scope.sh
+
+	# Polybar
+	launch_files=(`find ${_configdir}/polybar -type f | grep launch.sh`)
+	for _file in "${launch_files[@]}"; do
+		chmod +x ${_file}
+	done
+
+	preview_files=(`find ${_configdir}/polybar -type f | grep preview.sh`)
+	for _pfile in "${preview_files[@]}"; do
+		chmod +x ${_pfile}
+	done
+
+	scripts_dir=(`find ${_configdir}/polybar -type d | grep scripts | grep -v rofi`)
+	for _script in "${scripts_dir[@]}"; do
+		chmod +x ${_script}/*
+	done
+	
+	# Rofi
+	rofi_dir=(`find ${_configdir}/rofi -type f | grep '.sh' | grep -v rasi`)
+	for _rscript in "${rofi_dir[@]}"; do
+		chmod +x ${_rscript}
+	done	
+}
