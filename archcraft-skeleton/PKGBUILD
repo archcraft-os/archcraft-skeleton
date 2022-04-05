@@ -2,7 +2,7 @@
 
 pkgname=archcraft-skeleton
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Base Configurations for Archcraft"
 url="https://github.com/archcraft-os/archcraft-skeleton"
 arch=('any')
@@ -33,7 +33,6 @@ package() {
 	cp -r ${srcdir}/gtk-3.0 			"$_configdir"
 	cp -r ${srcdir}/Kvantum 			"$_configdir"
 	cp -r ${srcdir}/neofetch 			"$_configdir"
-	cp -r ${srcdir}/polybar 			"$_configdir"
 	cp -r ${srcdir}/qt5ct 				"$_configdir"
 	cp -r ${srcdir}/ranger 				"$_configdir"
 	cp -r ${srcdir}/rofi 				"$_configdir"
@@ -49,26 +48,4 @@ package() {
 	# Make scripts executable
 	chmod +x "$_skeldir"/.ncmpcpp/scripts/{album-art,ncmpcpp-art}
 	chmod +x "$_configdir"/ranger/scope.sh
-
-	# Polybar
-	launch_files=(`find ${_configdir}/polybar -type f | grep launch.sh`)
-	for _file in "${launch_files[@]}"; do
-		chmod +x ${_file}
-	done
-
-	preview_files=(`find ${_configdir}/polybar -type f | grep preview.sh`)
-	for _pfile in "${preview_files[@]}"; do
-		chmod +x ${_pfile}
-	done
-
-	scripts_dir=(`find ${_configdir}/polybar -type d | grep scripts | grep -v rofi`)
-	for _script in "${scripts_dir[@]}"; do
-		chmod +x ${_script}/*
-	done
-	
-	# Rofi
-	rofi_dir=(`find ${_configdir}/rofi -type f | grep '.sh' | grep -v rasi`)
-	for _rscript in "${rofi_dir[@]}"; do
-		chmod +x ${_rscript}
-	done	
 }
