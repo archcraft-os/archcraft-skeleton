@@ -2,7 +2,7 @@
 
 pkgname=archcraft-omz
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="A community-driven framework for managing your zsh configuration."
 arch=('any')
 url='https://github.com/ohmyzsh/ohmyzsh'
@@ -33,7 +33,7 @@ prepare() {
 	# Create config file 
 	cp "templates/zshrc.zsh-template" ".zshrc"
 	sed -i -e 's/ZSH_THEME=.*/ZSH_THEME="archcraft"/g' ".zshrc"
-	sed -i -e 's/# DISABLE_AUTO_UPDATE=.*/DISABLE_AUTO_UPDATE="true"/g' ".zshrc"
+	sed -i -e "s/# zstyle ':omz:update' mode disabled/zstyle ':omz:update' mode disabled/g" ".zshrc"
 
 	# Append some aliases
 	cat >> ".zshrc" <<- _EOF_
