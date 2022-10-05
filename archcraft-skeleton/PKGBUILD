@@ -2,7 +2,7 @@
 
 pkgname=archcraft-skeleton
 pkgver=1.0
-pkgrel=7
+pkgrel=8
 pkgdesc="Base Configurations for Archcraft"
 url="https://github.com/archcraft-os/archcraft-skeleton"
 arch=('any')
@@ -35,9 +35,7 @@ package() {
 	cp -r ${srcdir}/geany 				"$_configdir"
 	cp -r ${srcdir}/gtk-3.0 			"$_configdir"
 	cp -r ${srcdir}/Kvantum 			"$_configdir"
-	cp -r ${srcdir}/neofetch 			"$_configdir"
 	cp -r ${srcdir}/qt5ct 				"$_configdir"
-	cp -r ${srcdir}/ranger 				"$_configdir"
 	cp -r ${srcdir}/rofi 				"$_configdir"
 	install -Dm 644 mimeapps.list		"$_configdir"/mimeapps.list
 
@@ -50,5 +48,4 @@ package() {
 
 	# Make scripts executable
 	chmod +x "$_skeldir"/.ncmpcpp/scripts/{album-art,ncmpcpp-art}
-	chmod +x "$_configdir"/ranger/scope.sh
 }

@@ -1,0 +1,27 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-ranger
+pkgver=1.0
+pkgrel=1
+pkgdesc="Ranger Configuration for Archcraft"
+url="https://github.com/archcraft-os/archcraft-skeleton"
+arch=('any')
+license=('GPL3')
+makedepends=()
+depends=('ranger')
+conflicts=()
+provides=("${pkgname}")
+options=(!strip)
+
+prepare() {
+	cp -af ../files/. ${srcdir}
+}
+
+package() {
+	local _configdir=${pkgdir}/etc/skel/.config
+	mkdir -p "$_configdir"
+
+	# install ranger configs
+	cp -r ${srcdir}/ranger "$_configdir"
+	chmod +x "$_configdir"/ranger/scope.sh
+}

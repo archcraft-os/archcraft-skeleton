@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 ## Dirs
@@ -57,7 +57,7 @@ build_pkgs () {
 		cd "$DIR"
 	done
 
-	RDIR='../packages/x86_64'
+	RDIR='../pkgs/x86_64'
 	if [[ -d "$RDIR" ]]; then
 		mv -f "$PKGDIR"/*.pkg.tar.zst "$RDIR" && rm -r "$PKGDIR"
 		echo -e "Packages moved to Repository.\n[!] Don't forget to update the database.\n"
