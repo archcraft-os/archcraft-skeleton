@@ -5,4 +5,8 @@ configuration {
   cycle:              false;
   hide-scrollbar:     true;
   disable-history:    false;
+  hover-select:       true;
+  me-select-entry:    "MousePrimary";
+  me-accept-entry:    "!MousePrimary";
+  me-accept-custom:   "!Control+MousePrimary";
 }
