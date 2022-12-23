@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 ## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 ## Dirs
 DIR="$(pwd)"
@@ -22,7 +21,7 @@ exit_on_signal_SIGTERM () {
 trap exit_on_signal_SIGINT SIGINT
 trap exit_on_signal_SIGTERM SIGTERM
 
-# Build packages
+## Build packages
 build_pkgs () {
 	local pkg
 
@@ -33,14 +32,12 @@ build_pkgs () {
 	echo -e "\nBuilding Packages - \n"
 	for pkg in "${PKGS[@]}"; do
 		echo -e "Building ${pkg}..."
-		cd ${pkg} && makepkg -s && mv *.pkg.tar.zst "$PKGDIR"
+		cd ${pkg} && makepkg -sc && mv *.pkg.tar.zst "$PKGDIR"
 
 		if [[ "$pkg" == 'archcraft-omz' ]]; then
-			rm -rf src pkg oh-my-zsh
+			rm -rf oh-my-zsh
 		elif [[ "$pkg" == 'archcraft-vim' ]]; then
-			rm -rf src pkg vimrc
-		else
-			rm -rf src pkg
+			rm -rf vimrc
 		fi
 
 		# Verify
@@ -64,5 +61,5 @@ build_pkgs () {
 	fi
 }
 
-# Execute
+## Execute
 build_pkgs

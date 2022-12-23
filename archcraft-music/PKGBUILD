@@ -2,7 +2,7 @@
 
 pkgname=archcraft-music
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Few Copyright Free Songs for Archcraft"
 url="https://github.com/archcraft-os/archcraft-skeleton"
 arch=('any')
