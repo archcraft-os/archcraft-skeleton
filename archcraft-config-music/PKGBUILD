@@ -1,0 +1,29 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-config-music
+pkgver=1.0
+pkgrel=0
+pkgdesc="Music Config for Archcraft"
+url="https://github.com/archcraft-os/archcraft-skeleton"
+arch=('any')
+license=('GPL3')
+makedepends=()
+depends=()
+conflicts=()
+provides=("${pkgname}")
+options=(!strip)
+
+prepare() {
+	cp -af ../files/. ${srcdir}
+}
+
+package() {
+	local _cfgdir=${pkgdir}/etc/skel
+	mkdir -p "$_cfgdir"
+
+	cp -r ${srcdir}/.mpd      "$_cfgdir"
+	cp -r ${srcdir}/.ncmpcpp  "$_cfgdir"
+	chmod +x ${_cfgdir}/.ncmpcpp/scripts/*
+
+	install -Dm 755 kunst  ${pkgdir}/usr/local/bin/kunst
+}
