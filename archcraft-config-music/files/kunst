@@ -206,7 +206,11 @@ main() {
 			FIRST_RUN=false
 
 			# Display the album art using sxiv
-			dunstify -u low --replace=69 -I "$COVER" "$(mpc current)" && exit
+			if [[ -x `which dunstify &> /dev/null` ]]; then
+				dunstify -u low --replace=69 -I "$COVER" "$(mpc current)" && exit
+			else
+				notify-send -h string:x-canonical-private-synchronous:sys-notify-backlight -u low -i "$COVER" "$(mpc current)" && exit
+			fi
 			#sxiv -g "$SIZE$POSITION" -b "$COVER" -N "Kunst" &
 			
 			# Save the process ID so that we can kill

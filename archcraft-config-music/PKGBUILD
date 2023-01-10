@@ -2,7 +2,7 @@
 
 pkgname=archcraft-config-music
 pkgver=1.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Music Config for Archcraft"
 url="https://github.com/archcraft-os/archcraft-skeleton"
 arch=('any')
