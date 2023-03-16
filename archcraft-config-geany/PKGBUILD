@@ -2,7 +2,7 @@
 
 pkgname=archcraft-config-geany
 pkgver=1.0
-pkgrel=0
+pkgrel=1
 pkgdesc="Geany Config & Color-Schemes for Archcraft"
 url="https://github.com/archcraft-os/archcraft-skeleton"
 arch=('any')
