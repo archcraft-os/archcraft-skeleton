@@ -2,7 +2,7 @@
 
 pkgname=archcraft-omz
 pkgver=1.0
-pkgrel=6
+pkgrel=7
 pkgdesc="A community-driven framework for managing your zsh configuration."
 arch=('any')
 url='https://github.com/ohmyzsh/ohmyzsh'

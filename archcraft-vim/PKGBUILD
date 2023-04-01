@@ -3,7 +3,7 @@
 
 pkgname=archcraft-vim
 pkgver=1.0
-pkgrel=4
+pkgrel=5
 pkgdesc="The ultimate Vim configuration (vimrc) "
 arch=('any')
 url='https://github.com/amix/vimrc'
