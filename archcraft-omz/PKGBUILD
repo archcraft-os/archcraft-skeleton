@@ -1,8 +1,8 @@
 # Maintainer: Aditya Shakya <adi1090x@gmail.com>
 
 pkgname=archcraft-omz
-pkgver=1.0
-pkgrel=8
+pkgver=2.0
+pkgrel=0
 pkgdesc="A community-driven framework for managing your zsh configuration."
 arch=('any')
 url='https://github.com/ohmyzsh/ohmyzsh'
