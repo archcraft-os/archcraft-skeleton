@@ -2,23 +2,19 @@
 
 pkgname=archcraft-config-geany
 pkgver=1.0
-pkgrel=1
-pkgdesc="Geany Config & Color-Schemes for Archcraft"
-url="https://github.com/archcraft-os/archcraft-skeleton"
+pkgrel=2
+pkgdesc="Geany config and color-schemes for Archcraft"
 arch=('any')
+url="https://github.com/archcraft-os/archcraft-skeleton"
 license=('GPL3')
-makedepends=()
-depends=()
-conflicts=()
-provides=("${pkgname}")
 options=(!strip !emptydirs)
 
 prepare() {
-	cp -af ../files/. ${srcdir}
+	cp -af ../files/. "$srcdir"
 }
 
 package() {
-	local _cfgdir=${pkgdir}/etc/skel/.config
+	local _cfgdir="$pkgdir"/etc/skel/.config
 	mkdir -p "$_cfgdir"
-	cp -r ${srcdir}/* "$_cfgdir"
+	cp -r "$srcdir"/* "$_cfgdir"
 }

@@ -2,7 +2,7 @@
 
 pkgname=archcraft-omz
 pkgver=2.0
-pkgrel=0
+pkgrel=1
 pkgdesc="A community-driven framework for managing your zsh configuration."
 arch=('any')
 url='https://github.com/ohmyzsh/ohmyzsh'
@@ -20,15 +20,15 @@ source=("git+https://github.com/robbyrussell/oh-my-zsh.git")
 sha256sums=('SKIP')
 
 prepare() {
-  	cd ${srcdir}/oh-my-zsh
+  	cd "$srcdir"/oh-my-zsh
 
 	# Copy Archcraft zsh themes
-	cp ../../archcraft.zsh-theme ${srcdir}/oh-my-zsh/custom/themes
-	cp -r ../../spaceship-prompt ${srcdir}/oh-my-zsh/custom/themes
+	cp ../../archcraft.zsh-theme "$srcdir"/oh-my-zsh/custom/themes
+	cp -r ../../spaceship-prompt "$srcdir"/oh-my-zsh/custom/themes
 
-	cd ${srcdir}/oh-my-zsh/custom/themes
+	cd "$srcdir"/oh-my-zsh/custom/themes
 	ln -s spaceship-prompt/spaceship.zsh-theme spaceship.zsh-theme
-  	cd ${srcdir}/oh-my-zsh
+  	cd "$srcdir"/oh-my-zsh
 
 	# Create config file 
 	cp "templates/zshrc.zsh-template" ".zshrc"
@@ -77,12 +77,12 @@ prepare() {
 }
 
 package() {
-	cd ${srcdir}/oh-my-zsh
-	mkdir -p ${pkgdir}/etc/skel/.oh-my-zsh
-	cp -r . ${pkgdir}/etc/skel/.oh-my-zsh
-	install -Dm 644 ".zshrc" ${pkgdir}/etc/skel
-	install -Dm 644 "LICENSE.txt" ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE
-	rm ${pkgdir}/etc/skel/.oh-my-zsh/.zshrc
+	cd "$srcdir"/oh-my-zsh
+	mkdir -p "$pkgdir"/etc/skel/.oh-my-zsh
+	cp -r . "$pkgdir"/etc/skel/.oh-my-zsh
+	install -Dm 644 ".zshrc" "$pkgdir"/etc/skel
+	install -Dm 644 "LICENSE.txt" "$pkgdir"/usr/share/licenses/${pkgname}/LICENSE
+	rm "$pkgdir"/etc/skel/.oh-my-zsh/.zshrc
 }
 
 # vim:set ts=2 sw=2 et:

@@ -2,26 +2,23 @@
 
 pkgname=archcraft-ranger
 pkgver=1.0
-pkgrel=2
-pkgdesc="Ranger Configuration for Archcraft"
-url="https://github.com/archcraft-os/archcraft-skeleton"
+pkgrel=3
+pkgdesc="Ranger configuration for Archcraft"
 arch=('any')
+url="https://github.com/archcraft-os/archcraft-skeleton"
 license=('GPL3')
-makedepends=()
 depends=('ranger')
-conflicts=()
-provides=("${pkgname}")
 options=(!strip)
 
 prepare() {
-	cp -af ../files/. ${srcdir}
+	cp -af ../files/. "$srcdir"
 }
 
 package() {
-	local _configdir=${pkgdir}/etc/skel/.config
+	local _configdir="$pkgdir"/etc/skel/.config
 	mkdir -p "$_configdir"
 
 	# install ranger configs
-	cp -r ${srcdir}/ranger "$_configdir"
+	cp -r "$srcdir"/ranger "$_configdir"
 	chmod +x "$_configdir"/ranger/scope.sh
 }
