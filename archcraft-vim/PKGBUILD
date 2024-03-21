@@ -2,8 +2,8 @@
 # Developer : Amir Salihefendic <@amix3k>
 
 pkgname=archcraft-vim
-pkgver=1.0
-pkgrel=9
+pkgver=2.0
+pkgrel=0
 pkgdesc="The ultimate Vim configuration (vimrc) "
 arch=('any')
 url='https://github.com/amix/vimrc'
