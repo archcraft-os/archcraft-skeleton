@@ -2,11 +2,12 @@
 
 pkgname=archcraft-config-qt
 pkgver=1.0
-pkgrel=1
-pkgdesc="QT config for Archcraft"
+pkgrel=2
+pkgdesc="QT5/6 config for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-skeleton"
 license=('GPL3')
+depends=('qt6ct' 'qt5ct' 'kvantum' 'kvantum-qt5')
 options=(!strip !emptydirs)
 
 prepare() {
