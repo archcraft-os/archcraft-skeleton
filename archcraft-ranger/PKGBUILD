@@ -2,7 +2,7 @@
 
 pkgname=archcraft-ranger
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Ranger configuration for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-skeleton"
