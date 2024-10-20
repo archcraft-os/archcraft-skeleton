@@ -1,0 +1,22 @@
+# Maintainer: Aditya Shakya <adi1090x@gmail.com>
+
+pkgname=archcraft-skeleton
+pkgver=1.0
+pkgrel=0
+pkgdesc="Skeleton Files for Archcraft"
+arch=('any')
+url="https://github.com/archcraft-os/archcraft-skeleton"
+license=('GPL3')
+options=(!strip !emptydirs)
+
+prepare() {
+	cp -af ../files/. "$srcdir"
+}
+
+package() {
+	local _skeldir="$pkgdir"/etc/skel
+	mkdir -p "$_skeldir"
+
+	# Copy all skeleton files
+	cp -r "$srcdir"/. "$_skeldir"
+}
