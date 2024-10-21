@@ -1,13 +1,13 @@
 # Maintainer: Aditya Shakya <adi1090x@gmail.com>
 
-pkgname=archcraft-skeleton
+pkgname=archcraft-skeleton-wayland
 pkgver=1.0
 pkgrel=0
-pkgdesc="Skeleton Files for Archcraft Main and Prime"
+pkgdesc="Skeleton Files for Archcraft WSE"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-skeleton"
 license=('GPL3')
-conflicts=('archcraft-skeleton-wayland')
+conflicts=('archcraft-skeleton')
 options=(!strip !emptydirs)
 
 prepare() {
