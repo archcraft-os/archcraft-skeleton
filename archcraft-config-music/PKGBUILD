@@ -2,7 +2,7 @@
 
 pkgname=archcraft-config-music
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Music (mpd and ncmpcpp) config for Archcraft"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-skeleton"

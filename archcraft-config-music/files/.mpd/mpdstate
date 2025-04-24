@@ -11,8 +11,9 @@ repeat: 1
 single: 0
 consume: 0
 crossfade: 0
-mixrampdb: 0.000000
-mixrampdelay: -1.000000
+mixrampdb: 0
+mixrampdelay: -1
+lastloadedplaylist: 
 playlist_begin
 0:NEFFEX - Grateful [Copyright Free].mp3
 1:Cartoon - On & On (feat. Daniel Levi) [NCS Release].mp3
