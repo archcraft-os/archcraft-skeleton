@@ -11,6 +11,15 @@
 	<directories/>
 </action>
 <action>
+	<icon>search</icon>
+	<name>Search</name>
+	<unique-id>1581593230771689-1</unique-id>
+	<command>/usr/bin/catfish --path=%f</command>
+	<description>Search for files and folders</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
 	<icon>go-parent-folder</icon>
 	<name>Open as root</name>
 	<unique-id>1622790717174452-1</unique-id>
