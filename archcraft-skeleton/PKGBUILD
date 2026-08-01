@@ -2,7 +2,7 @@
 
 pkgname=archcraft-skeleton
 pkgver=1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Skeleton Files for Archcraft Main and Prime"
 arch=('any')
 url="https://github.com/archcraft-os/archcraft-skeleton"
